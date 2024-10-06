@@ -14,8 +14,16 @@ app.get('/', (req, res) => {
     res.send('Welcome to my site');
 })
 
-app.get('/courses', (req, res) => {
+app.get('/api/courses', (req, res) => {
     res.send(courses);
+})
+
+app.get('/api/courses/:id', (req, res) => {
+    let id = req.params.id    
+    let data = courses.find((item)=>{
+        return item.course_id == id
+    })    
+    res.send(data);
 })
 
 app.listen(port, ()=>{
